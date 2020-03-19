@@ -2,7 +2,7 @@
   "name": "",
   "version": "0.1.0",
   "description": "",
-  "main": "App.js",
+  "main": "app.js",
   "scripts": {
     "dev": "parcel src/index.html --out-dir dev",
     "build": "parcel build src/index.html"
@@ -11,9 +11,11 @@
   "author": "",
   "license": "",
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "@fullhuman/postcss-purgecss": "^2.1.0",
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
+    "pokeapi-js-wrapper": "^1.1.2",
     "postcss-modules": "^1.5.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

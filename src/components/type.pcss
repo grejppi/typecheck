@@ -1,0 +1,19 @@
+.TypeCard {
+    @apply select-none transition-shadow duration-500;
+}
+
+.TypeCard:hover:not(.Empty) {
+    @apply shadow-xl;
+}
+
+.TypeCardLabel {
+    @apply transition-opacity duration-500;
+}
+
+.TypeCard .TypeCardLabel {
+    @apply opacity-25;
+}
+
+.TypeCard:hover .TypeCardLabel {
+    @apply opacity-100;
+}

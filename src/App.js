@@ -1,20 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import './App.pcss';
+import './app.pcss'
 
-import Header from './Components/Header';
+import Attack from './components/attack'
+import Type from './components/type'
+import Effectiveness from './components/effectiveness'
+
+const Pokedex = require('pokeapi-js-wrapper')
+const P = new Pokedex.Pokedex()
+export { P }
 
 const App = () => {
   return (
-    <Header
-      title={"CompanyName.website"}
-      subtitle={"If you're reading this, the web server was installed correctly.\u2122"}
-    />
-  );
+    <>
+      <Attack />
+    </>
+  )
 }
 
 ReactDOM.render(
   <App />,
   document.getElementById('root'),
-);
+)
