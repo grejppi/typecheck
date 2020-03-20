@@ -7,8 +7,8 @@ import Attack from './components/attack'
 import Type from './components/type'
 import Effectiveness from './components/effectiveness'
 
-const Pokedex = require('pokeapi-js-wrapper')
-const P = new Pokedex.Pokedex()
+import { Pokedex } from 'pokeapi-js-wrapper'
+const P = new Pokedex()
 
 const capitalize = (s) => s.substring(0, 1).toUpperCase() + s.substring(1)
 
