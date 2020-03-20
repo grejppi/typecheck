@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { capitalize } from '../app'
+
 import './type.pcss'
 
 const rgb = (r, g, b) => `rgb(${[r, g, b]})`;
@@ -31,14 +33,14 @@ const UnknownColor = rgb(104, 160, 144)
 const Roles = {
   primary: <span className="font-black">1</span>,
   secondary: <span className="font-black">2</span>,
-  move: <span className="fas fa-compress-arrows-alt"></span>
+  move: <span className="fas fa-compress-arrows-alt"></span>,
+  swap: <span className="fas fa-exchange-alt"></span>,
 }
 
 const Re = /[aeiou]/g;
 
 export default ({ role, name, empty, width, height }) => {
-  let properName = name ? name.substring(0, 1).toUpperCase() + name.substring(1) : ''
-  let properRole = role ? role.substring(0, 1).toUpperCase() + role.substring(1) : ''
+  let properName = name ? capitalize(name) : ''
 
   let abbrName = properName.length > 3 ?
     properName.replace(Re, '').substring(0, 3) :
@@ -64,9 +66,6 @@ export default ({ role, name, empty, width, height }) => {
     {empty === true && <div
       className="TypeCard Empty rounded shadow-inner flex flex-col flex-grow m-1 text-center bg-gray-100"
     >
-      <div className="flex-grow flex items-center justify-center text-white text-4xl font-hairline text-gray-400">
-        {role ? Roles[role] : 'No'}
-      </div>
       <div className="invisible px-2 rounded m-1 mt-0 text-sm">
         &#8205;
       </div>

@@ -44,7 +44,11 @@ export default ({ attacker, opponent }) => {
 
         newSuggestions[attackType.name] *= factor * stab
       }
-      setSuggestions((suggestions) => suggestions = { ...suggestions, ...newSuggestions })
+
+      setSuggestions((suggestions) => suggestions = {
+        ...suggestions,
+        ...newSuggestions,
+      })
     }
 
     const populateAll = (opponentType) => {
@@ -53,33 +57,33 @@ export default ({ attacker, opponent }) => {
       populate(opponentType, 'no_damage_from', 0)
     }
 
-    setSuggestions({
-      normal: 1,
-      fire: 1,
-      fighting: 1,
-      water: 1,
-      flying: 1,
-      grass: 1,
-      poison: 1,
-      electric: 1,
-      ground: 1,
-      psychic: 1,
-      rock: 1,
-      ice: 1,
-      bug: 1,
-      dragon: 1,
-      ghost: 1,
-      dark: 1,
-      steel: 1,
-      fairy: 1,
-    })
-
     if (foundPrimary) {
-      foundPrimary.then(populateAll)
-    }
-
-    if (foundSecondary) {
-      foundSecondary.then(populateAll)
+      foundPrimary.then((primaryType) => {
+        setSuggestions({
+          normal: 1,
+          fire: 1,
+          fighting: 1,
+          water: 1,
+          flying: 1,
+          grass: 1,
+          poison: 1,
+          electric: 1,
+          ground: 1,
+          psychic: 1,
+          rock: 1,
+          ice: 1,
+          bug: 1,
+          dragon: 1,
+          ghost: 1,
+          dark: 1,
+          steel: 1,
+          fairy: 1,
+        })
+        populateAll(primaryType)
+        return foundSecondary || Promise.resolve(null)
+      }).then((secondaryType) => {
+        secondaryType && populateAll(secondaryType)
+      })
     }
 
     setAttackerPrimary(attacker.primary)
@@ -96,7 +100,6 @@ export default ({ attacker, opponent }) => {
     inverseSuggestions[suggestions[key]].push(key)
   }
 
-  console.log(inverseSuggestions)
   return <div>
     <div className="flex flex-col-reverse w-full container">
       {
