@@ -9,6 +9,7 @@ if (process.env.NODE_ENV === 'production') {
     content: [
       'src/**/*.html',
       'src/**/*.js',
+      'src/**/*.pcss',
     ],
     defaultExtractor: (content) =>
       content.match(/[A-z0-9-:\/]+/g) || [],

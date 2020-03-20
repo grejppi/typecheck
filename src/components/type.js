@@ -50,7 +50,7 @@ export default ({ role, name, empty, width, height }) => {
     abbrName += properName.substring(properName.length - (3 - abbrName.length))
   }
 
-  return <div className={`w-24 ${height || 'h-32'} flex`}>
+  return <div className={` w-24 ${height || 'h-32'} flex`}>
     {empty !== true && <div
       className="TypeCard rounded shadow flex flex-col flex-grow m-1 text-center"
       style={{backgroundColor: Colors[name] || UnknownColor}}
