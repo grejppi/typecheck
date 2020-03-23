@@ -10,9 +10,11 @@ import App from './components/app'
 import { setAttacker, setOpponent } from './actions'
 import rootReducer from './reducers'
 
+const param = (whomst) => (new URL(document.location)).searchParams.get(whomst)
+
 const store = createStore(rootReducer, applyMiddleware(thunk))
-store.dispatch(setAttacker('magikarp'))
-store.dispatch(setOpponent('stunfisk'))
+store.dispatch(setAttacker(param('attacker') || 'magikarp'))
+store.dispatch(setOpponent(param('opponent') || 'stunfisk'))
 
 ReactDOM.render(
   <Provider store={store}>
