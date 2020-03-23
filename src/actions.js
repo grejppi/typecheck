@@ -51,17 +51,17 @@ function populate(suggestionsByType, attacker, opponentType, damage, factor) {
 }
 
 function populateAll(suggestionsByType, attacker, opponentType) {
-  [
-    ['double_damage_from', 2],
-    ['half_damage_from', 0.5],
-    ['no_damage_from', 0],
-  ].map(([damage, factor]) => populate(
+  const f = (damage, factor) => populate(
     suggestionsByType,
     attacker,
     opponentType,
     damage,
     factor,
-  ))
+  )
+
+  f('double_damage_from', 2)
+  f('half_damage_from', 0.5)
+  f('no_damage_from', 0)
 }
 
 export function createAttackTypeSuggestions(attacker, opponent) {
@@ -93,7 +93,7 @@ export function createAttackTypeSuggestions(attacker, opponent) {
       .then(
         response => {
           populateAll(suggestionsByType, attacker, response)
-          return P.getTypeByName(attacker.secondary) || Promise.resolve(null)
+          return P.getTypeByName(opponent.secondary) || Promise.resolve(null)
         }
       )
       .then(
