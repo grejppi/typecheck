@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import Card from './card'
 
 import { swap } from '../actions'
-import { capitalize } from '../common'
 
 const mapStateToProps = state => { return { state } }
 
@@ -14,11 +13,11 @@ function Sprite({ sprite, pokemon, flip }) {
       <div className='flex-grow'>
         <img
           src={sprite}
-          alt={capitalize(pokemon)}
+          alt={pokemon}
           style={{ transform: `scaleX(${flip ? '-1' : '1'})` }}
         />
       </div>
-      <div>{capitalize(pokemon)}</div>
+      <div>{pokemon}</div>
     </div>
   )
 }
@@ -28,7 +27,7 @@ function Settings({ dispatch, state }) {
     <div className='flex flex-row flex-wrap mx-auto'>
       <Sprite
         sprite={state.attacker.sprite}
-        pokemon={state.attacker.pokemon}
+        pokemon={state.attacker.name}
         flip={true}
       />
 
@@ -51,7 +50,7 @@ function Settings({ dispatch, state }) {
 
       <Sprite
         sprite={state.opponent.sprite}
-        pokemon={state.opponent.pokemon}
+        pokemon={state.opponent.name}
         flip={false}
       />
     </div>

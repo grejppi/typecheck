@@ -3,6 +3,7 @@ import { Actions } from './actions'
 const DefaultState = {
   attacker: {
     pokemon: null,
+    name: null,
     primary: null,
     secondary: null,
     sprite: null,
@@ -10,6 +11,7 @@ const DefaultState = {
   },
   opponent: {
     pokemon: null,
+    name: null,
     primary: null,
     secondary: null,
     sprite: null,
@@ -26,6 +28,7 @@ function requestPokemon(state, action, whomst) {
     ...state,
     [whomst]: {
       pokemon: action.pokemon,
+      name: null,
       primary: null,
       secondary: null,
       sprite: null,
@@ -38,8 +41,8 @@ function requestPokemon(state, action, whomst) {
   }
 }
 
-function receivePokemon(state, { primary, secondary, sprite }) {
-  return { ...state, primary, secondary, sprite, didInvalidate: false }
+function receivePokemon(state, { name, primary, secondary, sprite }) {
+  return { ...state, name, primary, secondary, sprite, didInvalidate: false }
 }
 
 const ActionMap = {

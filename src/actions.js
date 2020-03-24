@@ -118,8 +118,19 @@ export function createAttackTypeSuggestions(attacker, opponent) {
 
 function setPokemonInner(dispatch, args) {
   dispatch(args.request(args.pokemon))
+  let name = args.pokemon
 
-  return P.getPokemonByName(args.pokemon)
+  return P.getPokemonSpeciesByName(args.pokemon)
+    .then(
+      response => {
+        name = (
+          response.names.find(v => v.language.name == 'en')
+          || { name: args.pokemon }
+        ).name
+        let variety = response.varieties.find(v => v.is_default).pokemon.name
+        return P.getPokemonByName(variety)
+      }
+    )
     .then(
       response => {
         let primary = null
@@ -132,7 +143,7 @@ function setPokemonInner(dispatch, args) {
 
         let sprite = response.sprites.front_default
 
-        dispatch(args.receive({ primary, secondary, sprite }))
+        dispatch(args.receive({ name, primary, secondary, sprite }))
       }
     )
 }
